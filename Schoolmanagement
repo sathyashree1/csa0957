@@ -1,0 +1,26 @@
+
+import java.util.Scanner;
+public class schoolmanagement {
+    public static void main(String[]args){
+        Scanner Scanner=new Scanner(System.in);
+        System.out.println("TOTAL USERS:");
+        int n= Scanner.nextInt();
+
+
+        int sum=0;
+
+        if (n>0){
+            Scanner = new Scanner(System.in);
+            System.out.println("STAFF USERS:");
+            int m= Scanner.nextInt();
+
+            sum=m/3;
+            sum=n-m-sum;
+
+            System.out.println("Student users:" + sum);
+        }
+        else {
+            System.out.println("invalid input");
+        }
+    }
+}
