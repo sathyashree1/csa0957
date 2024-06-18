@@ -1,0 +1,60 @@
+import java.util.Scanner;
+
+public class ElectricityBill {
+    private int customerNo;
+    private String name;
+    private int previousMonthReading;
+    private int currentReading;
+
+    public ElectricityBill(int customerNo, String name, int previousMonthReading, int currentReading) {
+        this.customerNo = customerNo;
+        this.name = name;
+        this.previousMonthReading = previousMonthReading;
+        this.currentReading = currentReading;
+    }
+
+    public double calculateBill() {
+        int unitsConsumed = currentReading - previousMonthReading;
+        double billAmount = 0;
+
+        if (unitsConsumed <= 100) {
+            billAmount = unitsConsumed * 1;
+        } else if (unitsConsumed <= 200) {
+            billAmount = 100 * 1 + (unitsConsumed - 100) * 2.5;
+        } else if (unitsConsumed <= 500) {
+            billAmount = 100 * 1 + 100 * 2.5 + (unitsConsumed - 200) * 4;
+        } else {
+            billAmount = 100 * 1 + 100 * 2.5 + 300 * 4 + (unitsConsumed - 500) * 6;
+        }
+
+        return billAmount;
+    }
+
+    public void displayBill() {
+        double billAmount = calculateBill();
+        System.out.println("Electricity Bill for Customer " + customerNo + " - " + name);
+        System.out.println("Previous Month Reading: " + previousMonthReading);
+        System.out.println("Current Month Reading: " + currentReading);
+        System.out.println("Units Consumed: " + (currentReading - previousMonthReading));
+        System.out.println("Bill Amount: Rs. " + billAmount);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter Customer No: ");
+        int customerNo = scanner.nextInt();
+
+        System.out.print("Enter Customer Name: ");
+        String name = scanner.next();
+
+        System.out.print("Enter Previous Month Reading: ");
+        int previousMonthReading = scanner.nextInt();
+
+        System.out.print("Enter Current Month Reading: ");
+        int currentReading = scanner.nextInt();
+
+        ElectricityBill bill = new ElectricityBill(customerNo, name, previousMonthReading, currentReading);
+        bill.displayBill();
+    }
+}
