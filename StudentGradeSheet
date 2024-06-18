@@ -1,0 +1,61 @@
+import java.util.Scanner;
+
+public class StudentGradeSheet {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter student name: ");
+        String studentName = scanner.nextLine();
+
+        System.out.print("Enter student register number: ");
+        String registerNumber = scanner.nextLine();
+
+        System.out.print("Enter number of courses: ");
+        int numCourses = scanner.nextInt();
+        scanner.nextLine(); // consume newline left-over
+
+        String[] courseNames = new String[numCourses];
+        String[] courseCodes = new String[numCourses];
+        int[] marks = new int[numCourses];
+
+        for (int i = 0; i < numCourses; i++) {
+            System.out.print("Enter course name " + (i + 1) + ": ");
+            courseNames[i] = scanner.nextLine();
+
+            System.out.print("Enter course code " + (i + 1) + ": ");
+            courseCodes[i] = scanner.nextLine();
+
+            System.out.print("Enter marks obtained in " + courseNames[i] + ": ");
+            marks[i] = scanner.nextInt();
+            scanner.nextLine(); // consume newline left-over
+        }
+
+        System.out.println("\nStudent Grade Sheet:");
+        System.out.println("Register Number: " + registerNumber);
+        System.out.println("Student Name: " + studentName);
+        System.out.println("------------------------------------------------");
+        System.out.println("Course Code  Course Name  Grade");
+        System.out.println("------------------------------------------------");
+
+        for (int i = 0; i < numCourses; i++) {
+            char grade = getGrade(marks[i]);
+            System.out.println(courseCodes[i] + "  " + courseNames[i] + "  " + grade);
+        }
+    }
+
+    private static char getGrade(int marks) {
+        if (marks >= 90) {
+            return 'S';
+        } else if (marks >= 80) {
+            return 'A';
+        } else if (marks >= 70) {
+            return 'B';
+        } else if (marks >= 60) {
+            return 'C';
+        } else if (marks >= 50) {
+            return 'D';
+        } else {
+            return 'F'; // fail
+        }
+    }
+}
